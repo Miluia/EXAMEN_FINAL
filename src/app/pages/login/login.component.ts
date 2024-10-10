@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,11 +8,17 @@ import { Component } from '@angular/core';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
-  constructor() {
-    console.log('constructor login');
-    this.imprimirMensaje();
-    this.imprimirMensaje2();
+export class LoginComponent implements OnDestroy {
+  constructor(
+    public auth: AuthService
+  ) {
+   // this.imprimirMensaje();
+   // this.imprimirMensaje2();
+    console.log('constructor login', auth.isLogued);
+  }
+
+  ngOnDestroy(): void {
+      console.log('destroy login')
   }
 
   imprimirMensaje(){
