@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-message',
+  selector: 'tostada',
   standalone: true,
   imports: [],
   templateUrl: './message.component.html',
