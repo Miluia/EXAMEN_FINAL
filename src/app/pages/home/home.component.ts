@@ -34,12 +34,24 @@ export class HomeComponent implements OnDestroy {
     this.title = 'Welcome home ';
 
     this.fetchMovies();
-
+    this.fetchTestCollection();
     this.db.fetchLocalCollection('movie')
       .subscribe(
         (res: any) => { console.log('success', res) },
         (error: any) => { console.log('error', error) },
       )
+  }
+
+  fetchTestCollection() {
+    this.db.fetchFirestoreCollection('test').subscribe(
+      (data) => {
+        console.log('Data de la colección test:', data);
+        //this.testData = data;
+      },
+      (error) => {
+        console.log('Error al obtener la colección test:', error);
+      }
+    );
   }
   fetchMovies() {
     this.http.get('db/movie.json')
