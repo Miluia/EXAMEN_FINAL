@@ -34,12 +34,29 @@ export class HomeComponent implements OnDestroy {
     this.title = 'Welcome home ';
 
     this.fetchMovies();
-    this.fetchTestCollection();
-    this.db.fetchLocalCollection('movie')
+
+    this.db.fetchFirestoreCollection('figuras')
       .subscribe(
-        (res: any) => { console.log('success', res) },
-        (error: any) => { console.log('error', error) },
+        (res: any) => { console.log('figuras desde firebase', res) },
+        (error: any) => { }
       )
+
+    /* this.db.addFirestoreDocument(
+      'comics', {
+      name: 'Harley Queen',
+      photo: 'No tiene',
+      age: 28,
+      size: 170
+    }) */
+
+    this.db.updateFirestoreDocument(
+      'figuras',
+      'UH2dbloE7r5pcLrmrw69',
+      {
+        name: 'Cristiano Ronaldo  dos Santos Aveiro'
+      }
+    )
+
   }
 
   fetchTestCollection() {
