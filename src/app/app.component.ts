@@ -3,11 +3,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { CardComponent } from './components/card/card.component';
 import { BtnComponent } from './components/btn/btn.component';
 import { MessageComponent } from './components/message/message.component';
-
+import { NgFor } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, CardComponent, BtnComponent, MessageComponent],
+  imports: [
+    RouterLink, RouterOutlet, CardComponent, BtnComponent, MessageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

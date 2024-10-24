@@ -1,12 +1,14 @@
-<h1>
-  {{title}}
-</h1>
-<hr>
-<h2>
-  {{subtitle}}
-</h2>
-<hr>
-<a href="{{link}}" class="btn btn-primary">Ir a Drive</a>
-<app-card></app-card>
-<tostada></tostada>
-<miboton></miboton>
+<h1 routerLink="/profile">{{this.title}}</h1>
+
+<div class="card" *ngFor="let peli of pelis">
+  <h5>{{peli.title}}</h5>
+  <p>{{peli.synopsis}}</p>
+</div>
+
+<div class="card" *ngFor="let i of noticias">
+  <div class="card-body">
+    <h5 class="card-title">{{i.title}}</h5>
+    <p class="card-text">{{i.description}}</p>
+    <a href="{{i.url}}" target="_blank" class="btn btn-primary">Ver más</a>
+  </div>
+</div>

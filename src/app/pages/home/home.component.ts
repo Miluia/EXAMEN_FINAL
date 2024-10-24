@@ -1,31 +1,59 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, importProvidersFrom, OnDestroy } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
 import { MessageComponent } from '../../components/message/message.component';
 import { BtnComponent } from '../../components/btn/btn.component';
 /////// paso 1 importar servicio
 import { AuthService } from '../../services/auth.service';
+import { NgFor } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DatabaseService } from '../../services/database.service';
+import { CoreModule } from '../../core.module';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CardComponent, MessageComponent, BtnComponent],
+  imports: [// HttpClientModule debe estar aquí
+    RouterLink,
+    NgFor,
+    CardComponent,
+    MessageComponent,
+    BtnComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnDestroy {
   title: any;
-  subtitle: any;
-  link: any;
+  noticias: any;
+  pelis: any;
   constructor(
+    public http: HttpClient,
+    public db: DatabaseService,
     public auth: AuthService /////// paso 2 importar servicio
   ) {
-    this.link = 'https://drive.google.com/drive/u/0/';
     this.title = 'Welcome home ';
-    this.subtitle = 'Lorem ipsum sit dolor amet';
-    auth.isLogued = false;
-    console.log('constructor home', auth.isLogued)
+
+    this.fetchMovies();
+
+    this.db.fetchLocalCollection('movie')
+      .subscribe(
+        (res: any) => { console.log('success', res) },
+        (error: any) => { console.log('error', error) },
+      )
+  }
+  fetchMovies() {
+    this.http.get('db/movie.json')
+      .subscribe(
+        (res: any) => {
+          console.log('leyendo datos de movie.json', res);
+          this.pelis = res;
+        },
+        (error: any) => {
+          console.log('error', error)
+        });
   }
 
   ngOnDestroy(): void {
-      console.log('destroy home')
+    console.log('destroy home')
   }
 }
