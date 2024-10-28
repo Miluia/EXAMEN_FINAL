@@ -1,17 +1,19 @@
 import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    AngularFireAuthModule,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss'
 })
-export class LoginComponent implements OnDestroy {
+export class RegisterComponent {
 
   loginForm: FormGroup;
   constructor(
@@ -19,34 +21,24 @@ export class LoginComponent implements OnDestroy {
     private fb: FormBuilder
   ) {
     this.loginForm = this.fb.group({
+      name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
+      phone: ['+591', []],
       password: ['', Validators.required]
     });
-    // this.imprimirMensaje();
-    // this.imprimirMensaje2();
-    console.log('constructor login', auth.isLogued);
-  }
-
-  ngOnDestroy(): void {
-    console.log('destroy login')
-  }
-
-  imprimirMensaje() {
-    console.log('inicie sesión para continuar');
-  }
-
-  imprimirMensaje2() {
-    console.log('......');
   }
 
   onLogin() {
     if (this.loginForm.valid) {
       console.log('formulario valido', this.loginForm.value)
-      /*   const { email, password } = this.loginForm.value;
-      this.authService.loginUser(email, password); */
+      this.auth.register(this.loginForm.value)
+        .then(
+          (res: any) => { console.log('then 1', res) },
+          (res: any) => { console.log('callback2', res) },
+        )
     }
     else {
-      console.log('formulario invalido', this.loginForm)
+      console.log('formulario invalido', this.loginForm.value)
       alert('revise sus datos');
     }
   }
