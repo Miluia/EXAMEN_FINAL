@@ -22,8 +22,6 @@ export class LoginComponent implements OnDestroy {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
-    // this.imprimirMensaje();
-    // this.imprimirMensaje2();
     console.log('constructor login', auth.isLogued);
   }
 
@@ -31,23 +29,8 @@ export class LoginComponent implements OnDestroy {
     console.log('destroy login')
   }
 
-  imprimirMensaje() {
-    console.log('inicie sesión para continuar');
-  }
-
-  imprimirMensaje2() {
-    console.log('......');
-  }
 
   onLogin() {
-    if (this.loginForm.valid) {
-      console.log('formulario valido', this.loginForm.value)
-      /*   const { email, password } = this.loginForm.value;
-      this.authService.loginUser(email, password); */
-    }
-    else {
-      console.log('formulario invalido', this.loginForm)
-      alert('revise sus datos');
-    }
+
   }
 }

@@ -30,8 +30,9 @@ export class RegisterComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log('formulario valido', this.loginForm.value)
-      this.auth.register(this.loginForm.value)
+      console.log('formulario valido', this.loginForm.value);
+      const {email, password } = this.loginForm.value
+      this.auth.registerUser(email, password , this.loginForm.value)
         .then(
           (res: any) => { console.log('then 1', res) },
           (res: any) => { console.log('callback2', res) },

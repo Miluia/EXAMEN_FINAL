@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { Auth } from '@angular/fire/auth';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +25,7 @@ export const appConfig: ApplicationConfig = {
       messagingSenderId: "580133731545",
       appId: "1:580133731545:web:ff5d7b4515d30c32c552c8"
     })),
+    provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)
   ]
