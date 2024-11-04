@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,9 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
 
-  constructor(){
+  constructor(
+    public auth: AuthService
+  ){
     console.log('hola desde perfil')
   }
 

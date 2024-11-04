@@ -22,7 +22,7 @@ export class LoginComponent implements OnDestroy {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
-    console.log('constructor login', auth.isLogued);
+    console.log(auth.isLogued);
   }
 
   ngOnDestroy(): void {

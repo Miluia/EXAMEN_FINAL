@@ -51,16 +51,16 @@ export class HomeComponent implements OnDestroy {
       size: 170
     }) */
     //actualiza un documento en la colección figuras
-    /* this.db.updateFirestoreDocument(
-      'figuras',
-      't8Yy1tXDqv6GyD9ARqhp',
-      {
-        age: 25
-      }
-    ).then(
-      (res: any) => { console.log('figuras desde firebase', res) },
-      (error: any) => { }
-    ) */
+    this.db.addFirestoreDocument('comics', {
+      name: 'Harley Queen',
+      photo: 'No tiene',
+      age: 28,
+      size: 170
+    }).then(docRef => {
+      console.log('Documento agregado con ID:', docRef.id);  // Aquí tienes el ID del documento nuevo
+    }).catch(error => {
+      console.error('Error al agregar documento:', error);
+    });
 
    /*  this.db.deleteFirestoreDocument(
       'figuras',

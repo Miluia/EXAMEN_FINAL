@@ -13,7 +13,7 @@ import { CommonModule, NgFor } from '@angular/common';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  isMenuOpen = false;
+  isMenuOpen = true;
 
   constructor(){
     console.log('constructor app component');
