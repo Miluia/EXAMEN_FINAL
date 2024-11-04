@@ -33,14 +33,16 @@ export class HomeComponent implements OnDestroy {
   ) {
     this.title = 'Welcome home ';
 
+    //lee de forma local peliculas desde un json
     this.fetchMovies();
 
+    //lee la colección figuras desdes firestore
     this.db.fetchFirestoreCollection('figuras')
       .subscribe(
         (res: any) => { console.log('figuras desde firebase', res) },
         (error: any) => { }
       )
-
+    // crea un nuevo documento en la coleccion figuras
     /* this.db.addFirestoreDocument(
       'comics', {
       name: 'Harley Queen',
@@ -48,27 +50,26 @@ export class HomeComponent implements OnDestroy {
       age: 28,
       size: 170
     }) */
-
-    this.db.updateFirestoreDocument(
+    //actualiza un documento en la colección figuras
+    /* this.db.updateFirestoreDocument(
       'figuras',
-      'UH2dbloE7r5pcLrmrw69',
+      't8Yy1tXDqv6GyD9ARqhp',
       {
-        name: 'Cristiano Ronaldo  dos Santos Aveiro'
+        age: 25
       }
-    )
+    ).then(
+      (res: any) => { console.log('figuras desde firebase', res) },
+      (error: any) => { }
+    ) */
 
-  }
+   /*  this.db.deleteFirestoreDocument(
+      'figuras',
+      'UH2dbloE7r5pcLrmrw69'
+    ).then(
+      (res: any) => { console.log('figuras desde firebase', res) },
+      (error: any) => { }
+    ) */
 
-  fetchTestCollection() {
-    this.db.fetchFirestoreCollection('test').subscribe(
-      (data) => {
-        console.log('Data de la colección test:', data);
-        //this.testData = data;
-      },
-      (error) => {
-        console.log('Error al obtener la colección test:', error);
-      }
-    );
   }
   fetchMovies() {
     this.http.get('db/movie.json')
@@ -81,7 +82,6 @@ export class HomeComponent implements OnDestroy {
           console.log('error', error)
         });
   }
-
   ngOnDestroy(): void {
     console.log('destroy home')
   }

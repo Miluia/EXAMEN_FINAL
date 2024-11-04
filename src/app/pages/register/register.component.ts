@@ -32,6 +32,7 @@ export class RegisterComponent {
     if (this.loginForm.valid) {
       console.log('formulario valido', this.loginForm.value);
       const {email, password } = this.loginForm.value
+     // this.auth.registerUser(this.loginForm.value.email, this.loginForm.value.password , this.loginForm.value)
       this.auth.registerUser(email, password , this.loginForm.value)
         .then(
           (res: any) => { console.log('then 1', res) },

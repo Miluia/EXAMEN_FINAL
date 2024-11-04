@@ -26,6 +26,7 @@ export class AuthService {
   async loginUser(email: string, password: string) {
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      localStorage.setItem('user', JSON.stringify(userCredential.user));
       console.log('Usuario autenticado:', userCredential.user);
     } catch (error) {
       console.error('Error al iniciar sesión:', error);

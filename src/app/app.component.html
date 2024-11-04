@@ -1,12 +1,18 @@
 <div class="container-fluid">
-  <div class="navbar">
-    <a routerLink="/home" class="navbar-btn">Home</a>
-    <a routerLink="/login" class="navbar-btn">Login</a>
-    <a routerLink="/register" class="navbar-btn">Register</a>
-    <a routerLink="/search" class="navbar-btn">Search</a>
-    <a routerLink="/profile" class="navbar-btn">Profile</a>
+  <div class="app-navbar">
+    <div class="app-header">
+      <button class="app-header-btn-menu" (click)="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <div class="app-menu" *ngIf="isMenuOpen">
+      <a routerLink="/home" class="navbar-btn">Home</a>
+      <a routerLink="/login" class="navbar-btn">Login</a>
+      <a routerLink="/register" class="navbar-btn">Register</a>
+      <a routerLink="/search" class="navbar-btn">Search</a>
+      <a routerLink="/profile" class="navbar-btn">Profile</a>
+    </div>
+    <div class="row">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <div class="row">
-    <router-outlet></router-outlet>
-  </div>
-</div>

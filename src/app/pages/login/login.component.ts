@@ -31,6 +31,14 @@ export class LoginComponent implements OnDestroy {
 
 
   onLogin() {
-
+    if (this.loginForm.valid) {
+      console.log('formulario valido', this.loginForm.value)
+        const { email, password } = this.loginForm.value;
+      this.auth.loginUser(email, password);
+    }
+    else {
+      console.log('formulario invalido', this.loginForm)
+      alert('revise sus datos');
+    }
   }
 }
