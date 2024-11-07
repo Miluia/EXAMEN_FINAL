@@ -34,7 +34,7 @@ export class AuthService {
 
       const userDocRef = doc(this.firestore, `users/${userId}`);
       await setDoc(userDocRef, { ...additionalData, email });
-
+      this.router.navigateByUrl('/login')
       console.log('Usuario registrado y documento creado en Firestore');
     } catch (error) {
       console.error('Error al registrar usuario:', error);
@@ -49,6 +49,7 @@ export class AuthService {
       this.getProfile(userCredential.user.uid);
       this.router.navigateByUrl('/profile');
     } catch (error) {
+      //alert('Error:' + error);
       console.error('Error al iniciar sesión:', error);
     }
   }

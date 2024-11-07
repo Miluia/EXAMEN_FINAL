@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from '../../services/database.service';
 import { CoreModule } from '../../core.module';
+import { TabbarComponent } from '../../components/tabbar/tabbar.component';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -17,6 +18,7 @@ import { CoreModule } from '../../core.module';
     NgFor,
     CardComponent,
     MessageComponent,
+    TabbarComponent,
     BtnComponent
   ],
   templateUrl: './home.component.html',

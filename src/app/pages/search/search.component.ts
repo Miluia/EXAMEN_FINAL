@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { DatabaseService } from '../../services/database.service';
 import { NgFor } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-search',
@@ -18,8 +19,12 @@ export class SearchComponent {
 
 
   constructor(
+    public auth: AuthService,
     public db: DatabaseService,
   ) {
+
+let verificar  = auth.verifyIsLogued();
+console.log(verificar);
     this.search = 'Mario';
     console.log(this.search)
     this.loadData();
