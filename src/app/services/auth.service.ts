@@ -20,9 +20,14 @@ export class AuthService {
   ) {
     this.verifyIsLogued();
     //////////////
-    let storedProfile = localStorage.getItem('profile');
+    let storedProfile: any = localStorage.getItem('profile');
     if (storedProfile) {
       this.profile = JSON.parse(storedProfile);
+    }
+    let stroedUser: any = localStorage.getItem('user');
+    if (stroedUser) {
+      let user = JSON.parse(stroedUser)
+      this.getProfile(user?.uid);
     }
     //////////////
   }
@@ -46,7 +51,7 @@ export class AuthService {
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
       localStorage.setItem('user', JSON.stringify(userCredential.user));
       console.log('Usuario autenticado:', userCredential.user);
-      this.getProfile(userCredential.user.uid);
+      this.getProfile(userCredential.user.uid); ``
       this.router.navigateByUrl('/profile');
     } catch (error) {
       //alert('Error:' + error);
@@ -64,7 +69,9 @@ export class AuthService {
     this.db.getDocumentById('users', uid)
       .subscribe(
         (res: any) => {
+          console.log('perfil desde firebase', res)
           localStorage.setItem('profile', JSON.stringify(res));
+          this.profile = res;
         },
         (error: any) => { console.log(error) })
   }
