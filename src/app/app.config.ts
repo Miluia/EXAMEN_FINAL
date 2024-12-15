@@ -21,12 +21,13 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(HttpClientModule, ReactiveFormsModule,  AngularFireAuthModule,
       CommonModule),
     provideFirebaseApp(() => initializeApp({
-      apiKey: "AIzaSyDCZapGt7BC69fT1GG2ZAIgm6FpuzftpJM",
-      authDomain: "progra2-2.firebaseapp.com",
-      projectId: "progra2-2",
-      storageBucket: "progra2-2.appspot.com",
-      messagingSenderId: "580133731545",
-      appId: "1:580133731545:web:ff5d7b4515d30c32c552c8"
+      apiKey: "AIzaSyAEtbiMytmncJ5hRhknnqH6njXa9Vrdwdo",
+      authDomain: "progra-dbe41.firebaseapp.com",
+      projectId: "progra-dbe41",
+      storageBucket: "progra-dbe41.firebasestorage.app",
+      messagingSenderId: "596729176935",
+      appId: "1:596729176935:web:510999bfda1fa0ba2cc5c2",
+      measurementId: "G-9HYR1S7P3R"
     })),
     ////// para login y registro
     provideAuth(() => getAuth()),

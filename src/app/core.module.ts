@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CartService } from './services/cart.service';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   imports: [
-    HttpClientModule, // Importamos HttpClientModule aquí para toda la aplicación
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
-    // Aquí puedes incluir todos los servicios que desees que sean globales
-  ]
+    CartService,
+  ],
 })
 export class CoreModule {
   constructor() {

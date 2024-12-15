@@ -1,14 +1,18 @@
-<h1 routerLink="/profile">{{this.title}}</h1>
+<div class="container">
+  <h1 class="text-center mb-4">{{ title }}</h1>
+  
+  <!-- Botón estilizado para alternar destacados -->
+  <div class="text-center mb-4">
+    <button 
+      class="btn btn-primary btn-lg"
+      (click)="toggleDestacados()">
+      {{ showOnlyDestacados ? '🌟 Ver Todos' : '🌟 Ver Destacados' }}
+    </button>
+  </div>
 
-<div class="card" *ngFor="let peli of pelis">
-  <h5>{{peli.title}}</h5>
-  <p>{{peli.synopsis}}</p>
-</div>
-<div class="card" *ngFor="let i of noticias">
-  <div class="card-body">
-    <h5 class="card-title">{{i.title}}</h5>
-    <p class="card-text">{{i.description}}</p>
-    <a href="{{i.url}}" target="_blank" class="btn btn-primary">Ver más</a>
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let evento of filteredEventos">
+      <app-card [data]="evento" [isEduUser]="isEduUser"></app-card>
+    </div>
   </div>
 </div>
-<app-tabbar></app-tabbar>

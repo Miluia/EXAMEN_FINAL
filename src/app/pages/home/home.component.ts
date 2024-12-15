@@ -1,19 +1,19 @@
-import { Component, importProvidersFrom, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { DatabaseService } from '../../services/database.service';
 import { CardComponent } from '../../components/card/card.component';
 import { MessageComponent } from '../../components/message/message.component';
 import { BtnComponent } from '../../components/btn/btn.component';
-/////// paso 1 importar servicio
-import { AuthService } from '../../services/auth.service';
-import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { DatabaseService } from '../../services/database.service';
-import { CoreModule } from '../../core.module';
+import { NgFor } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { TabbarComponent } from '../../components/tabbar/tabbar.component';
+import { CommonModule } from '@angular/common'; // Importa CommonModule
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [// HttpClientModule debe estar aquí
+  imports: [
+    CommonModule,
     RouterLink,
     NgFor,
     CardComponent,
@@ -22,69 +22,50 @@ import { TabbarComponent } from '../../components/tabbar/tabbar.component';
     BtnComponent
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnDestroy {
-  title: any;
-  noticias: any;
-  pelis: any;
+export class HomeComponent implements OnInit {
+  title: string = 'Eventos Disponibles';
+  eventos: any[] = [];
+  filteredEventos: any[] = [];
+  isEduUser: boolean = false;
+  isAdminUser: boolean = false; // Nueva variable para verificar admin
+  showOnlyDestacados: boolean = false;
+
   constructor(
-    public http: HttpClient,
-    public db: DatabaseService,
-    public auth: AuthService /////// paso 2 importar servicio
-  ) {
-    this.title = 'Welcome home ';
+    public auth: AuthService,
+    private db: DatabaseService,
+    public http: HttpClient
+  ) {}
 
-    //lee de forma local peliculas desde un json
-    this.fetchMovies();
-
-    //lee la colección figuras desdes firestore
-    this.db.fetchFirestoreCollection('figuras')
-      .subscribe(
-        (res: any) => { console.log('figuras desde firebase', res) },
-        (error: any) => { }
-      )
-    // crea un nuevo documento en la coleccion figuras
-    /* this.db.addFirestoreDocument(
-      'comics', {
-      name: 'Harley Queen',
-      photo: 'No tiene',
-      age: 28,
-      size: 170
-    }) */
-    //actualiza un documento en la colección figuras
-    this.db.addFirestoreDocument('comics', {
-      name: 'Harley Queen',
-      photo: 'No tiene',
-      age: 28,
-      size: 170
-    }).then(docRef => {
-      console.log('Documento agregado con ID:', docRef.id);  // Aquí tienes el ID del documento nuevo
-    }).catch(error => {
-      console.error('Error al agregar documento:', error);
-    });
-
-   /*  this.db.deleteFirestoreDocument(
-      'figuras',
-      'UH2dbloE7r5pcLrmrw69'
-    ).then(
-      (res: any) => { console.log('figuras desde firebase', res) },
-      (error: any) => { }
-    ) */
-
+  ngOnInit(): void {
+    this.loadEventos();
+    this.checkUserEmail();
   }
-  fetchMovies() {
-    this.http.get('db/movie.json')
-      .subscribe(
-        (res: any) => {
-          console.log('leyendo datos de movie.json', res);
-          this.pelis = res;
-        },
-        (error: any) => {
-          console.log('error', error)
-        });
+
+  loadEventos() {
+    this.db.fetchFirestoreCollection('eventos').subscribe(
+      (res: any[]) => {
+        this.eventos = res.map(evento => ({
+          ...evento,
+          fecha: evento.fecha?.toDate() || null,
+          destacado: evento.destacado || false
+        }));
+        this.filteredEventos = [...this.eventos];
+      },
+      (error) => console.error('Error al cargar eventos:', error)
+    );
   }
-  ngOnDestroy(): void {
-    console.log('destroy home')
+  toggleDestacados() {
+    this.showOnlyDestacados = !this.showOnlyDestacados;
+    this.filteredEventos = this.showOnlyDestacados
+      ? this.eventos.filter(evento => evento.destacado)
+      : [...this.eventos];
+  }
+
+  checkUserEmail() {
+    const userEmail = this.auth.profile?.email;
+    this.isEduUser = !!(userEmail && userEmail.endsWith('.edu.bo'));
+    this.isAdminUser = this.auth.isAdmin$.getValue(); // Obtén el valor actual de `isAdmin`
   }
 }

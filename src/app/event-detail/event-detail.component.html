@@ -1,0 +1,77 @@
+<div *ngIf="evento$ | async as evento; else loading" class="event-detail">
+  <div class="event-header">
+    <img [src]="getImageUrl(evento.imagen)" alt="Imagen del evento" class="event-image" />
+  </div>
+  <div class="event-body">
+    <h1>{{ evento.nombre }}</h1>
+    <p><strong>Fecha:</strong> {{ evento.fecha ? (evento.fecha | date: 'longDate') : 'Fecha no disponible' }}</p>
+    <p>
+      <strong>Ubicación:</strong>
+      {{ evento.ubicacion }}
+      <a *ngIf="evento.ubicacion" 
+         [href]="'https://www.google.com/maps/search/?api=1&query=' + evento.ubicacion" 
+         target="_blank">
+        <i class="fa-solid fa-map-marker-alt"></i>
+      </a>
+    </p>
+    <p><strong>Precio:</strong> ${{ evento.precio }}</p>
+    <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+  </div>
+
+  <div class="action-buttons">
+    <button class="btn btn-primary" (click)="toggleRatingSection()">Calificar</button>
+    <button class="btn btn-secondary" (click)="toggleOpinionsSection()">Dar Opinión</button>
+    <button class="btn btn-success" (click)="togglePurchaseSection()">Comprar Ticket</button>
+  </div>
+
+  <div *ngIf="showRatingSection" class="rating-section">
+    <h3>Selecciona tu calificación:</h3>
+    <div class="stars">
+      <i 
+        *ngFor="let star of [1, 2, 3, 4, 5]" 
+        class="fa-solid fa-star"
+        [class.selected]="star <= rating" 
+        (click)="rateEvent(star)">
+      </i>
+    </div>
+    <p *ngIf="showThanks">¡Gracias por calificar con {{ rating }} estrellas!</p>
+  </div>
+
+  <div *ngIf="showOpinionsSection" class="opinions-section">
+    <h3>Opiniones:</h3>
+    <div class="opinion-form">
+      <textarea [(ngModel)]="newOpinion" name="opinion" placeholder="Escribe tu opinión..." required></textarea>
+      <button class="btn btn-primary" (click)="submitOpinion()">Enviar Opinión</button>
+    </div>
+
+    <div *ngIf="opinions.length > 0" class="opinions-list">
+      <div *ngFor="let opinion of opinions" class="opinion-item">
+        <p>{{ opinion.text }}</p>
+        <small>{{ opinion.fecha | date: 'longDate' }}</small>
+      </div>
+    </div>
+    <p *ngIf="opinions.length === 0" class="no-opinions">No hay opiniones aún. ¡Sé el primero en opinar!</p>
+  </div>
+
+  <div *ngIf="showPurchaseSection" class="purchase-section">
+    <h3>Selecciona la cantidad de tickets:</h3>
+    <div class="dropdown-container">
+      <label for="ticketQuantity" class="dropdown-label">Selecciona la cantidad de tickets</label>
+      <select id="ticketQuantity" [(ngModel)]="ticketQuantity" class="dropdown">
+        <option *ngFor="let number of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="number">
+          {{ number }}
+        </option>
+      </select>
+    </div>
+    <div class="action-buttons">
+      <button class="btn btn-primary" (click)="buyNow()">Comprar Ahora</button>
+      <button class="btn btn-secondary" (click)="addToCart()">Añadir al Carrito</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loading-spinner">
+    <p>Cargando información del evento...</p>
+  </div>
+</ng-template>

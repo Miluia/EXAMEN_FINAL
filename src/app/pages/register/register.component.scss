@@ -1,0 +1,56 @@
+.register-container {
+    background-color: #35393c; /* Fondo oscuro */
+    color: #f8f9fa; /* Texto blanco */
+    padding: 20px;
+  }
+  
+  .register-form {
+    background-color: #2e2e2e; /* Fondo del formulario */
+    padding: 30px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra suave */
+  }
+  
+  .register-form .form-label {
+    color: #adb5bd; /* Etiquetas en gris claro */
+  }
+  
+  .register-form .form-control {
+    background-color: #343a40; /* Fondo de los campos */
+    color: #f8f9fa; /* Texto blanco */
+    border: 1px solid #495057; /* Borde gris oscuro */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .register-form .form-control:focus {
+    border-color: #0d6efd; /* Azul al enfocar */
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.5);
+  }
+  
+  .btn-primary {
+    background-color: #0d6efd; /* Azul */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #084298; /* Azul más oscuro */
+  }
+  
+  .register-form a {
+    color: #0d6efd; /* Azul claro */
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .register-form a:hover {
+    color: #084298; /* Azul más oscuro */
+  }
+  

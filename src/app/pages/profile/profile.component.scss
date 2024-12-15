@@ -1,0 +1,76 @@
+.profile-container {
+    padding: 20px;
+    background-color: #35393c; /* Fondo oscuro */
+    color: #f8f9fa; /* Texto blanco */
+    min-height: 100vh; /* Altura mínima para cubrir toda la pantalla */
+  }
+  
+  .profile-info {
+    background-color: #2e2e2e; /* Fondo oscuro para el perfil */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    margin-bottom: 20px;
+  }
+  
+  .profile-info h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-details p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .btn-primary {
+    background-color: #0d6efd; /* Azul */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #084298; /* Azul más oscuro */
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d; /* Gris */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268; /* Gris más oscuro */
+  }
+  
+  .profile-posts h2 {
+    font-size: 1.5rem;
+    color: #f8f9fa;
+  }
+  
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Distribución en columnas dinámicas */
+    gap: 20px; /* Espaciado entre tarjetas */
+  }
+  
+  .cards-container app-card {
+    margin-bottom: 20px; /* Separación entre tarjetas */
+  }
+  

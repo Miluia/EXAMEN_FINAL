@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CardComponent } from '../../components/card/card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
     RouterLink,
+    CardComponent,
+    NgFor,
     CommonModule
   ],
   templateUrl: './profile.component.html',
@@ -16,27 +20,24 @@ import { RouterLink } from '@angular/router';
 })
 export class ProfileComponent {
 
+  postsFiltrados: any;
   constructor(
     public auth: AuthService,
-    public db: DatabaseService
+    public db: DatabaseService,
+    private router: Router
+    
   ) {
-    console.log('hola desde perfil component', auth.profile);
-
-   /*  db.updateFirestoreDocument('users', auth.profile.id, { phone: '+591145625' });
-    db.updateFirestoreDocument('users', auth.profile.id, {
-      description: 'Full Stack developer',
-      ocupation: 'Teacher',
-      link: 'https:github.com/@lopezfer',
-      protraitPhoto: '',
-      nickname: 'lopezfer',
-      verified: 'true',
-
-      followers: [],
-      following: [],
-      posts: []
-    }); */
+    this.db.getDocumentsByField('posts', 'userId', this.auth.profile?.id)
+    .subscribe((res: any)=>{
+      console.log('posts filtrados', res);
+      this.postsFiltrados = res;
+    });
   }
 
-
-
+  onLogout() {
+    this.auth.logoutUser().then(() => {
+      alert('Has cerrado sesión.');
+      this.router.navigate(['/login']);
+    });
+  }
 }

@@ -1,0 +1,278 @@
+.event-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #212121;
+  border-radius: 10px;
+  color: #fff;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-header .event-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.event-body h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #ff6f61;
+  text-align: center;
+}
+
+.event-body p {
+  margin: 5px 0;
+}
+
+.event-body p strong {
+  color: #f8f9fa;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #0d6efd;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.fa-map-marker-alt {
+  color: #ff6f61;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+  .fa-map-marker-alt {
+    margin-left: 5px;
+    font-size: 1.2rem;
+    color: #0d6efd;
+    vertical-align: middle;
+  }
+  
+.purchase-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.dropdown-container {
+  margin: 15px 0;
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dropdown-label {
+  display: block;
+  font-size: 1rem;
+  color: #f8f9fa;
+  margin-bottom: 8px;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #6c757d;
+  background-color: #343a40;
+  color: #f8f9fa;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.dropdown:focus {
+  border-color: #0d6efd;
+  background-color: #495057;
+  outline: none;
+}
+
+.dropdown option {
+  background-color: #343a40;
+  color: #f8f9fa;
+}
+
+.action-buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #084298;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.rating-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.rating-section .stars {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.rating-section .fa-star {
+  font-size: 2rem;
+  color: #adb5bd;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.rating-section .fa-star.selected {
+  color: #ffc107;
+}
+
+.opinions-section {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  
+.opinion-form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.opinion-form textarea {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #6c757d;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #f8f9fa;
+  background-color: #343a40;
+  resize: none;
+  outline: none;
+}
+
+.opinion-form button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.opinion-form textarea::placeholder {
+  color: #adb5bd;
+}
+
+.opinions-list {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+
+.opinion-item {
+  background-color: #2e2e2e;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.opinion-item p {
+  margin: 0;
+  font-size: 1rem;
+  word-wrap: break-word;
+  flex: 1;
+}
+
+.opinion-item small {
+  font-size: 0.9rem;
+  color: #adb5bd;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.fa-map-marker-alt {
+  color: #ff6f61;
+  margin-left: 5px;
+  vertical-align: middle;
+}

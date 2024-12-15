@@ -1,9 +1,28 @@
 <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+  <img
+    class="card-img-top"
+    [src]="getImageUrl(data.imagen)"
+    alt="Imagen del evento"
+    [routerLink]="['/event-detail', data.id]"
+  />
 
-    <miboton></miboton>
+  <div class="card-body">
+    <h5 class="card-title">{{ data.nombre }}</h5>
+    <p class="card-text" *ngIf="data.fecha">Fecha: {{ data.fecha | date: 'longDate' }}</p>
+    <p class="card-text" *ngIf="!data.fecha">Fecha no disponible</p>
+    <p class="card-text">Ubicación: {{ data.ubicacion }}</p>
+
+    <p class="card-text" *ngIf="data.destacado" style="color: gold;">⭐ Destacado</p>
+
+    <!-- Mostrar descuentos según tipo de usuario -->
+    <p class="card-text" *ngIf="getDiscountedPrice(data) !== data.precio">
+      Precio: <span style="text-decoration: line-through;">${{ data.precio }}</span>
+      <strong>${{ getRoundedPrice(getDiscountedPrice(data)) }}</strong>
+    </p>
+    <p class="card-text" *ngIf="getDiscountedPrice(data) === data.precio">
+      Precio: ${{ data.precio }}
+    </p>
+
+    <a class="btn btn-primary" [routerLink]="['/event-detail', data.id]">Ver Detalle</a>
   </div>
 </div>

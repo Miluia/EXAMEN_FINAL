@@ -1,7 +1,17 @@
-
-<h1>PERFIL</h1>
-<p><strong>Nombre:</strong> {{auth.profile?.name}}</p>
-<p><strong>Email:</strong> {{auth.profile?.email}}</p>
-<p><strong>Phone</strong> {{auth.profile?.phone}}</p>
-<p><strong>UID</strong> {{auth.profile?.id}}</p>
-<button [routerLink]="'/edit-profile'">Editar perfil</button>
+<div class="container profile-container">
+  <div class="row justify-content-center align-items-start">
+    <div class="col-12 col-md-6 profile-info">
+      <h1 class="text-center">Perfil</h1>
+      <div class="profile-details">
+        <p><strong>Nombre:</strong> {{ auth.profile?.name }}</p>
+        <p><strong>Email:</strong> {{ auth.profile?.email }}</p>
+        <p><strong>Teléfono:</strong> {{ auth.profile?.phone }}</p>
+        <p><strong>UID:</strong> {{ auth.profile?.id }}</p>
+        <div class="button-group">
+          <button class="btn btn-primary" [routerLink]="'/edit-profile'">Editar Perfil</button>
+          <button class="btn btn-secondary" (click)="onLogout()">Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

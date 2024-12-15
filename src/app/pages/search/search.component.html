@@ -1,21 +1,65 @@
 <div class="container-fluid">
   <div class="row">
+    <!-- Título -->
     <div class="col-12">
-      <h1>Buscador</h1>
+      <h1 class="search-title">Buscador</h1>
     </div>
-    <div class="col-12" style="display: flex;justify-content: center;align-items: center;flex-direction: row;">
-      <input (ngModelChange)="searchOnChange()" [(ngModel)]="this.search" class="form-control mr-sm-2" type="search"
-        placeholder="Search" aria-label="Search">
-      <button (click)="searchDocument()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      <!--
-      JS: onclick="searchDocument()"
-      Angular: (click)=searchDocument
-      -->
+
+    <!-- Barra de búsqueda -->
+    <div class="col-12 search-bar">
+      <input 
+        (ngModelChange)="searchOnChange()" 
+        [(ngModel)]="search" 
+        type="search" 
+        class="form-control" 
+        placeholder="Buscar por nombre"
+        aria-label="Buscar por nombre"
+      />
+      <button 
+        (click)="searchDocument()" 
+        class="btn btn-primary" 
+        type="submit">
+        Buscar
+      </button>
     </div>
-    <div class="col-12">
-      <p *ngFor="let i of filtered">
-        {{i.name}}
-      </p>
+
+    <!-- Contenedor de filtros -->
+    <div class="col-12 filters-container">
+      <!-- Filtro por categoría -->
+      <div class="filter">
+        <select 
+          id="categoryFilter" 
+          (change)="filterByCategory()" 
+          [(ngModel)]="selectedCategory"
+        >
+          <option value="" selected>Todas las categorías</option>
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+        <label for="categoryFilter">Categoría</label>
+      </div>
+
+      <!-- Filtro por ubicación -->
+      <div class="filter">
+        <select 
+          id="locationFilter" 
+          (change)="filterByLocation()" 
+          [(ngModel)]="selectedLocation"
+        >
+          <option value="" selected>Toda Bolivia</option>
+          <option value="La Paz">La Paz</option>
+          <option value="Cochabamba">Cochabamba</option>
+          <option value="Santa Cruz">Santa Cruz</option>
+        </select>
+        <label for="locationFilter">Ubicación</label>
+      </div>
+    </div>
+
+    <!-- Resultados filtrados -->
+    <div class="col-12 cards-container">
+      <app-card 
+        *ngFor="let event of filtered" 
+        [data]="event">
+      </app-card>
     </div>
   </div>
 </div>

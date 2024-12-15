@@ -14,34 +14,25 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
+  registerForm: FormGroup;
 
-  loginForm: FormGroup;
-  constructor(
-    public auth: AuthService,
-    private fb: FormBuilder
-  ) {
-    this.loginForm = this.fb.group({
+  constructor(public auth: AuthService, private fb: FormBuilder) {
+    this.registerForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['+591', []],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
-  onLogin() {
-    if (this.loginForm.valid) {
-      console.log('formulario valido', this.loginForm.value);
-      const {email, password } = this.loginForm.value
-     // this.auth.registerUser(this.loginForm.value.email, this.loginForm.value.password , this.loginForm.value)
-      this.auth.registerUser(email, password , this.loginForm.value)
-        .then(
-          (res: any) => { console.log('then 1', res) },
-          (res: any) => { console.log('callback2', res) },
-        )
-    }
-    else {
-      console.log('formulario invalido', this.loginForm.value)
-      alert('revise sus datos');
+  onRegister() {
+    if (this.registerForm.valid) {
+      const { email, password } = this.registerForm.value;
+      this.auth.registerUser(email, password, this.registerForm.value).then(() => {
+        alert('Usuario registrado con éxito');
+      });
+    } else {
+      alert('Formulario inválido. Verifica los datos ingresados.');
     }
   }
 }

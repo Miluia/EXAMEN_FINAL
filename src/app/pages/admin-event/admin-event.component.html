@@ -1,0 +1,83 @@
+<div class="admin-event-container">
+  <h1>Administración de Eventos</h1>
+
+  <!-- Formulario de Crear Evento -->
+  <div class="event-form-container">
+    <h2>{{ selectedEventId ? 'Editar Evento' : 'Crear Nuevo Evento' }}</h2>
+    <form [formGroup]="eventForm" (ngSubmit)="selectedEventId ? updateEvent() : createEvent()">
+      <div class="form-row">
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" formControlName="nombre" required>
+      </div>
+      <div class="form-row">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" formControlName="descripcion" required></textarea>
+      </div>
+      <div class="form-row">
+        <label for="precio">Precio:</label>
+        <input id="precio" type="number" formControlName="precio" required>
+      </div>
+      <div class="form-row">
+        <label for="fecha">Fecha:</label>
+        <input id="fecha" type="date" formControlName="fecha" required>
+      </div>
+      <div class="form-row">
+        <label for="ubicacion">Ubicación:</label>
+        <input id="ubicacion" formControlName="ubicacion" required>
+      </div>
+      <div class="form-row">
+        <label for="imagen">Imagen URL:</label>
+        <input id="imagen" formControlName="imagen" required>
+      </div>
+      <div class="form-row">
+        <label for="categoria">Categoría:</label>
+        <input id="categoria" formControlName="categoria" required>
+      </div>
+      <div class="form-row">
+        <label for="descuento">Descuento:</label>
+        <input id="descuento" type="number" formControlName="descuento" min="0" max="100">
+      </div>
+      <div class="form-row">
+        <label class="checkbox-label" for="destacado">
+          Destacado:
+          <input id="destacado" type="checkbox" formControlName="destacado">
+        </label>
+      </div>      
+      <button type="submit" class="btn-submit">
+        {{ selectedEventId ? 'Actualizar Evento' : 'Crear Evento' }}
+      </button>
+    </form>
+  </div>
+
+  <!-- Tabla de Eventos -->
+  <h2>Eventos Existentes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Fecha</th>
+        <th>Ubicación</th>
+        <th>Descuento</th>
+        <th>Destacado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of eventos">
+        <td>{{ event.nombre }}</td>
+        <td>{{ event.descripcion }}</td>
+        <td>{{ event.precio }}</td>
+        <td>{{ event.fecha | date: 'shortDate' }}</td>
+        <td>{{ event.ubicacion }}</td>
+        <td>{{ event.descuento }}</td>
+        <td>{{ event.destacado ? 'Sí' : 'No' }}</td>
+        <td>
+          <button class="btn-edit" (click)="editEvent(event)">Editar</button>
+          <button class="btn-delete" (click)="deleteEvent(event.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

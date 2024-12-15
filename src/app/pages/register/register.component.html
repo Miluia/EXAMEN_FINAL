@@ -1,31 +1,57 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <!--
-      JS: onsubmit="()"
-      (ngSubmit)="onLogin()"
-      -->
-      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <div class="form-control-group">
-          <label for="">Nombre</label>
-          <input formControlName="name" class="form-control" type="text">
+<div class="container-fluid register-container">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-12 col-md-6 col-lg-4">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="register-form">
+        <h2 class="text-center mb-4">Regístrate</h2>
+        <div class="form-control-group mb-3">
+          <label for="name" class="form-label">Nombre</label>
+          <input
+            id="name"
+            formControlName="name"
+            class="form-control"
+            type="text"
+            placeholder="Ingresa tu nombre"
+          />
         </div>
-        <div class="form-control-group">
-          <label for="">Teléfono</label>
-          <input formControlName="phone" class="form-control" type="text">
+        <div class="form-control-group mb-3">
+          <label for="phone" class="form-label">Teléfono</label>
+          <input
+            id="phone"
+            formControlName="phone"
+            class="form-control"
+            type="tel"
+            placeholder="Ingresa tu teléfono"
+          />
         </div>
-        <div class="form-control-group">
-          <label for="">Email</label>
-          <input formControlName="email" class="form-control" type="text">
+        <div class="form-control-group mb-3">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <input
+            id="email"
+            formControlName="email"
+            class="form-control"
+            type="email"
+            placeholder="Ingresa tu correo electrónico"
+          />
         </div>
-        <div class="form-control-group">
-          <label for="">Password</label>
-          <input formControlName="password" class="form-control" type="text">
+        <div class="form-control-group mb-4">
+          <label for="password" class="form-label">Contraseña</label>
+          <input
+            id="password"
+            formControlName="password"
+            class="form-control"
+            type="password"
+            placeholder="Crea una contraseña"
+          />
         </div>
-        <button type="submit" class="btn btn-primary">
-          Iniciar sesión
-        </button>
-
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-block w-100">
+            Registrarme
+          </button>
+        </div>
+        <p class="text-center mt-3">
+          ¿Ya tienes una cuenta?
+          <a routerLink="/login" class="text-primary">Inicia sesión aquí</a>
+        </p>
       </form>
     </div>
   </div>

@@ -1,0 +1,12 @@
+<div class="cart-container">
+  <h2>Historial de Compras</h2>
+  
+  <div *ngFor="let compra of compras" class="compra-item">
+      <div>
+          <h4>{{ compra.nombreEvento }}</h4>
+          <h5><p><b>{{ compra.cantidadTickets }}</b> Tickets comprados</p></h5> 
+          <p><strong>Fecha de Compra:</strong> {{ compra.fechaCompra | date: 'longDate' }}</p>
+      </div>
+  </div>
+</div>
+
