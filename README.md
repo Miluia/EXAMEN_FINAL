@@ -1,32 +1,49 @@
-<<<<<<< HEAD
-# Angular1
+# EXAMEN FINAL
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+Este proyecto es una aplicación web diseñada para la gestión y visualización de eventos, permitiendo a los usuarios explorar diferentes actividades y a los administradores gestionar la información de manera eficiente. Desarrollada con Angular como framework principal para el frontend, la aplicación utiliza Firebase para la autenticación y el almacenamiento de datos en tiempo real.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Funcionalidades
 
-## Code scaffolding
+### Para usuarios:
+- **Visualización de eventos**: Los usuarios pueden explorar una lista de eventos disponibles, con detalles como fecha, ubicación y precio.
+- **Filtrado de eventos**: Permite a los usuarios filtrar eventos por categoría y eventos destacados, facilitando la búsqueda de actividades de interés.
+- **Registro en eventos**: Los usuarios pueden registrarse para participar en eventos, gestionando su asistencia de manera sencilla.
+- **Opiniones y calificaciones**: Los usuarios pueden dejar opiniones y calificaciones sobre los eventos a los que asistieron, contribuyendo a la comunidad.
+- **Compra de tickets**: Los usuarios pueden comprar directamente o añadir al carrito, donde se les dará el total a pagar (con descuentos si es que esta autenticado con una cuenta estudiantil edu.bo). Se podrán ver las compras en el historial.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Para administradores:
+- **Gestión de eventos**: Los administradores pueden crear, editar y eliminar eventos, cualquier correo con terminacion ucb.edu.bo puede ser administrador. Al iniciar sesion se accede a la pantalla para administrar los eventos.
+- **Gestión de usuarios**: Permite a los administradores gestionar los perfiles de los usuarios, incluyendo la asignación de roles y permisos.
+- **Reportes de actividad**: Los administradores pueden generar reportes sobre la asistencia a eventos y la actividad de los usuarios, facilitando la toma de decisiones.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Guía de instalación y ejecución
 
-## Running unit tests
+1. **Clona el repositorio**:
+   ```bash
+   git clone https://github.com/Miluia/EXAMEN_FINAL.git
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. **Navega al directorio del proyecto**:
 
-## Running end-to-end tests
+3. **Instala las dependencias**:
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+4. **Ejecuta la aplicación localmente**:
+   ```bash
+   ng serve
+   ```
 
-## Further help
+5. **Abre tu navegador** y accede a `http://localhost:4200` para ver la aplicación en funcionamiento.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-=======
-# EXAMEN_FINAL
-Proyecto actualizado para examen final. Participantes: Miranda Soria Aguilar, Carla Montaño Villarroel
->>>>>>> a8fadfa7a65d8ebc55a0fb44d084e967b17b9c24
+---
+
+## Participantes
+- **Carla Montaño Villarroel**
+- **Miranda Soria Aguilar**
+
